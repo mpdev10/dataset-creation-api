@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="dataset_creation_api",
-    version="1.0.0",
+    version="1.0.1",
     url="https://github.com/mpdev10/dataset-creation-api",
     author="mpdev10",
     description="Dataset Creation API",

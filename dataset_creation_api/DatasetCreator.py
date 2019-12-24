@@ -28,14 +28,17 @@ class DatasetCreator:
         for category in self.categories:
             self._make_dir(os.path.join(self._root_dir, category))
 
-    def scrape_data(self, max_request_num=10, keywords=''):
+    def scrape_data(self, max_request_num=10, keywords='', timeout=5):
         for category in self.categories:
             results = ddg3.search(keywords=category + ' ' + keywords,
                                   max_request_num=max_request_num)
             for i, result in enumerate(results.search_results):
                 try:
-                    response = requests.get(result.image,
-                                            headers={'Accept': 'image/*'})
+                    response = requests.request(method='GET',
+                                                url=result.image,
+                                                headers={'Accept': 'image/*'},
+                                                timeout=timeout
+                                            )
                     content_type = response.headers['content-type']
                     extension = mimetypes.guess_extension(content_type, strict=False)
 
