@@ -48,7 +48,7 @@ class DatasetCreator:
                     if response.status_code == 200:
                         with open(os.path.join(self._get_directory(category), str(i) + extension), 'wb') as f:
                             f.write(response.content)
-                except (requests.exceptions.ConnectionError, MaxRetryError, KeyError):
+                except Exception:
                     pass
 
     def _get_directory(self, category):
